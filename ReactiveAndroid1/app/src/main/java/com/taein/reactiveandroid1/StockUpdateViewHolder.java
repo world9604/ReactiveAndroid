@@ -14,7 +14,7 @@ public class StockUpdateViewHolder extends RecyclerView.ViewHolder {
         this.binding = binding;
     }
 
-    void bind(String stockSymbol) {
+    void bind(StockUpdate stockSymbol) {
         binding.setStockSymbol(stockSymbol);
     }
 }

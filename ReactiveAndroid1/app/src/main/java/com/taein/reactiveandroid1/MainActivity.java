@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.taein.reactiveandroid1.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -45,7 +46,9 @@ public class MainActivity extends AppCompatActivity {
         Observable.just("Hello! Please use this app responsibly!")
                 .subscribe(s -> helloText = s);
 
-        Observable.just("APPL", "GOOGLE", "TWTR")
-                .subscribe(stockSymbol -> stockDataAdapter.add(stockSymbol));
+        Observable.just(
+                new StockUpdate("GOOGLE", 12.43, new Date()),
+                new StockUpdate("APPL", 645.1, new Date()),
+                new StockUpdate("TWTR", 1.43, new Date())).subscribe(stockDataAdapter::add);
     }
 }
