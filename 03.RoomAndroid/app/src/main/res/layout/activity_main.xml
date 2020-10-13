@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="androidx.databinding.ObservableArrayList" />
+        <variable
+            name="activity"
+            type="com.taein.roomandroid.MainActivity"/>
+        <!--<variable
+            name="stockSymbolList"
+            type="ObservableArrayList&lt;String&gt;" />-->
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/hello_world_salute"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="@{activity.helloText}"
+            app:layout_constraintBottom_toTopOf="@id/stock_updates_recycler_view"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/stock_updates_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hello_world_salute" />
+<!--            bind:item="@{stockSymbolList}"-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
