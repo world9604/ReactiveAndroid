@@ -1,9 +1,9 @@
-package com.taein.reactiveandroid2;
+package com.taein.roomandroid3;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
-import com.taein.reactiveandroid2.databinding.StockUpdateItemBinding;
+import com.taein.roomandroid3.databinding.StockUpdateItemBinding;
 import java.util.ArrayList;
 import java.util.List;
 

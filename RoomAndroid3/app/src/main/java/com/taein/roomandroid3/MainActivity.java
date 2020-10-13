@@ -1,5 +1,6 @@
-package com.taein.reactiveandroid2;
+package com.taein.roomandroid3;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,9 +9,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.taein.reactiveandroid2.databinding.ActivityMainBinding;
-import com.taein.reactiveandroid2.yahoo.RetrofitYahooServiceFactory;
-import com.taein.reactiveandroid2.yahoo.YahooService;
+import com.taein.roomandroid3.databinding.ActivityMainBinding;
+import com.taein.roomandroid3.yahoo.RetrofitYahooServiceFactory;
+import com.taein.roomandroid3.yahoo.YahooService;
+import com.taein.roomandroid3.yahoo.data.repository.StockRepository;
 
 import java.util.concurrent.TimeUnit;
 
@@ -19,6 +21,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import lombok.Getter;
 
+import static hu.akarnokd.rxjava.interop.RxJavaInterop.toV2Observable;
+
 public class MainActivity extends AppCompatActivity {
 
     @Getter
@@ -26,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     private LinearLayoutManager layoutManager;
     private StockDataAdapter stockDataAdapter;
+    private StockRepository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,11 +60,21 @@ public class MainActivity extends AppCompatActivity {
                 .map(r -> r.getQuery().getResults().getQuote())
                 .flatMap(Observable::fromIterable)
                 .map(r -> StockUpdate.create(r))
+                .doOnNext(this::saveStockUpdate)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(stockUpdate -> {
                     Log.d("APP", "New update " + stockUpdate.getStockSymbol());
                     stockDataAdapter.add(stockUpdate);
                 });
+
+        // Repository 객체 얻기
+        repository = StockRepository.getInstance(getApplication());
+        repository.getStockUpdateById(1);
+    }
+
+    private void saveStockUpdate(StockUpdate stockUpdate) {
+        log("saveStockUpdate", stockUpdate.getStockSymbol());
+        repository.insert(stockUpdate);
     }
 
     private void log(Throwable throwable) {
@@ -72,5 +87,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void log(String stage) {
         Log.d("APP", stage + ":" + Thread.currentThread().getName());
+    }
+
+    public static <T> Observable<T> v2(rx.Observable<T> source) {
+        return toV2Observable(source);
     }
 }
