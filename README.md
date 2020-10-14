@@ -39,3 +39,10 @@ ObservableTransformer을 이용해서 각종 Observable 리팩토링 작업 추�
 <a href="./08.SubjectAndroid"><strong>08.SubjectAndroid</strong></a>
 <br>
 Subject, RxPreferences를 사용하여 Preferences 업데이트를 반응적으로 다루는 로직 추가
+
+<br>
+<br>
+<a href="http://reactivex.io/"><strong>http://reactivex.io/</strong></a>
+RxJava 관련 문서를 찾아볼 수 있습니다.
+<a href="https://rxmarbles.com/"><strong>https://rxmarbles.com/</strong></a>
+각종 함수들의 구슬 다이어그램을 확인 할수 있습니다.
