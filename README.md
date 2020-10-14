@@ -43,6 +43,9 @@ Subject, RxPreferences를 사용하여 Preferences 업데이트를 반응적으�
 <br>
 <br>
 <a href="http://reactivex.io/"><strong>http://reactivex.io/</strong></a>
+<br>
 RxJava 관련 문서를 찾아볼 수 있습니다.
+<br>
 <a href="https://rxmarbles.com/"><strong>https://rxmarbles.com/</strong></a>
+<br>
 각종 함수들의 구슬 다이어그램을 확인 할수 있습니다.
