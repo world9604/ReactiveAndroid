@@ -40,6 +40,11 @@ ObservableTransformer을 이용해서 각종 Observable 리팩토링 작업 추�
 <br>
 Subject, RxPreferences를 사용하여 Preferences 업데이트를 반응적으로 다루는 로직 추가
 
+
+<a href="./09.SweetTracker_Assignment"><strong>09.SweetTracker_Assignment</strong></a>
+<br>
+스윗트랙커의 API를 이용해 택배 상세 페이지 구현 프로젝트
+
 <br>
 <br>
 <strong>그 외 관련 자료</strong>
