@@ -33,4 +33,4 @@ Observable의 map(), flatmap(), switchMap(), filter(), firstElement() 등 다양
 
 <a href="./07.RefectoringAndroid"><strong>07.RefectoringAndroid</strong></a>
 <br>
-ObservableTransformaer을 이용해서 각종 Observable 리팩토링 작업 추가
+ObservableTransformer을 이용해서 각종 Observable 리팩토링 작업 추가
