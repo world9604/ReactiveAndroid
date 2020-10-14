@@ -34,3 +34,8 @@ Observable의 map(), flatmap(), switchMap(), filter(), firstElement() 등 다양
 <a href="./07.RefectoringAndroid"><strong>07.RefectoringAndroid</strong></a>
 <br>
 ObservableTransformer을 이용해서 각종 Observable 리팩토링 작업 추가
+
+
+<a href="./08.SubjectAndroid"><strong>08.SubjectAndroid</strong></a>
+<br>
+Subject, RxPreferences를 사용하여 Preferences 업데이트를 반응적으로 다루는 로직 추가
