@@ -42,6 +42,8 @@ Subject, RxPreferences를 사용하여 Preferences 업데이트를 반응적으�
 
 <br>
 <br>
+<strong>그 외 관련 자료</strong>
+<br>
 <a href="http://reactivex.io/"><strong>http://reactivex.io/</strong></a>
 <br>
 RxJava 관련 문서를 찾아볼 수 있습니다.
