@@ -29,3 +29,8 @@ Rxappcompatactivity, RxFragment 등 Observable.compose(bindToLifecycle())을 사
 <a href="./06.FunctionalProgrammingAndroid"><strong>06.FunctionalProgrammingAndroid</strong></a>
 <br>
 Observable의 map(), flatmap(), switchMap(), filter(), firstElement() 등 다양한 순수 함수를 이용하여 기존 로직 수정
+
+
+<a href="./07.RefectoringAndroid"><strong>07.RefectoringAndroid</strong></a>
+<br>
+ObservableTransformaer을 이용해서 각종 Observable 리팩토링 작업 추가
