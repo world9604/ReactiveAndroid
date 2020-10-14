@@ -24,3 +24,8 @@ RxJava의 여러 Error 핸들링 기능을 접목. RxJavaPlugins 플러그인을
 <a href="./05.LifeCycleManageAndroid"><strong>05.LifeCycleManageAndroid</strong></a>
 <br>
 Rxappcompatactivity, RxFragment 등 Observable.compose(bindToLifecycle())을 사용하여 RxJava의 Observable의 메모리 누수를 막기 위한 작업
+
+
+<a href="./06.FunctionalProgrammingAndroid"><strong>06.FunctionalProgrammingAndroid</strong></a>
+<br>
+Observable의 map(), flatmap(), switchMap(), filter(), firstElement() 등 다양한 순수 함수를 이용하여 기존 로직 수정
