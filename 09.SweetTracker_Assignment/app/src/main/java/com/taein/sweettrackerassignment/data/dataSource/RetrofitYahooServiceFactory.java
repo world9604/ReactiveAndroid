@@ -10,6 +10,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitYahooServiceFactory {
 
+//    final String SWEET_TRACKER_BASE_URL = "http://img.sweettracker.net/image/mobile_test/mobile.json/";
+    final String SWEET_TRACKER_BASE_URL = "http://img.sweettracker.net/";
+
     HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor()
             .setLevel(HttpLoggingInterceptor.Level.BODY);
 
@@ -18,7 +21,7 @@ public class RetrofitYahooServiceFactory {
             .client(client)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
-//            .baseUrl("http://query.yahooapis.com/v1/public/")
+            .baseUrl(SWEET_TRACKER_BASE_URL)
             .build();
 
     public SweetTrackerService create() {

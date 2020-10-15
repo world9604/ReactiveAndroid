@@ -9,8 +9,8 @@ import com.taein.sweettrackerassignment.data.dataSource.LocalStockDataSource;
 import com.taein.sweettrackerassignment.data.dataSource.RemoteStockDataSource;
 import com.taein.sweettrackerassignment.data.dataSource.StockDataSource;
 import com.taein.sweettrackerassignment.data.entity.ParcelInfo;
+import com.taein.sweettrackerassignment.data.vo.ParcelInfoWithTrackingDetails;
 
-import io.reactivex.Observable;
 import io.reactivex.Single;
 
 public class ParcelInfoRepository {
@@ -23,7 +23,7 @@ public class ParcelInfoRepository {
         ParcelInfoDatabase db = ParcelInfoDatabase.getInstance(app);
 
         // Local Data Source
-        ParcelInfoDao parcelInfoDao = db.stockUpdateDao();
+        ParcelInfoDao parcelInfoDao = db.ParcelInfoDao();
         localDataSource = LocalStockDataSource.getInstance(parcelInfoDao);
 
         // Remote Data Source
@@ -43,19 +43,19 @@ public class ParcelInfoRepository {
         return INSTANCE;
     }
 
-    public Single<ParcelInfo> getStockUpdateById(int id) {
+    public ParcelInfoWithTrackingDetails getStockUpdateById(int id) {
         return localDataSource.getStockUpdateById(id);
     }
 
-    public void insert(ParcelInfo stockUpdate) {
-        localDataSource.insert(stockUpdate);
+    public void insert(ParcelInfo parcelInfoWithTrackingDetails) {
+        localDataSource.insert(parcelInfoWithTrackingDetails);
     }
 
-    public Observable<ParcelInfo> getStockUpdates() {
+    public ParcelInfoWithTrackingDetails getStockUpdates() {
         return localDataSource.getStockUpdates();
     }
 
-    public ParcelInfo getParcelInfoFromQuery(String query) {
-        return remoteDataSource.getParcelInfoFromQuery(query);
+    public Single<ParcelInfoWithTrackingDetails> getParcelVOFromQuery() {
+        return remoteDataSource.getParcelVOFromQuery();
     }
 }

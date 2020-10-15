@@ -16,12 +16,12 @@ android {
         // The following argument makes the Android Test Orchestrator run its
         // "pm clear" command after each test invocation. This command ensures
         // that the app's state is completely cleared between tests.
-        testInstrumentationRunnerArguments clearPackageData: 'true'
+        // testInstrumentationRunnerArguments clearPackageData: 'true'
     }
 
-    testOptions {
+    /*testOptions {
         execution 'ANDROIDX_TEST_ORCHESTRATOR'
-    }
+    }*/
 
     buildTypes {
         release {
@@ -50,8 +50,22 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
-    testImplementation 'junit:junit:4.12'
+
+    // Core library
+    androidTestImplementation 'androidx.test:core:1.3.0'
+
+    // AndroidJUnitRunner and JUnit Rules
+    androidTestImplementation 'androidx.test:runner:1.3.0'
+    androidTestImplementation 'androidx.test:rules:1.3.0'
+    //androidTestUtil 'androidx.test:orchestrator:1.3.0'
+
+    // RxJava support for Room Testing
+    androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
+
+    // Assertions
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.ext:truth:1.3.0'
+    androidTestImplementation 'com.google.truth:truth:1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     // RecyclerView 추가
@@ -81,12 +95,6 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version"
     // RxJava support for Room 추가
     implementation "androidx.room:room-rxjava2:$room_version"
-    // RxJava support for Room Testing
-    androidTestImplementation "android.arch.core:core-testing:1.0.0-alpha"
-
-    // AndroidJUnit4 추가
-    androidTestImplementation 'androidx.test:runner:1.1.0'
-    androidTestUtil 'androidx.test:orchestrator:1.1.0'
 
     // rxlifecycle2 추가
     implementation 'com.trello.rxlifecycle2:rxlifecycle:2.0.1'

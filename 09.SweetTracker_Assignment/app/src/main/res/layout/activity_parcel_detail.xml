@@ -20,12 +20,12 @@
         <TextView
             android:id="@+id/hello_world_salute"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:text="@{activity.helloText}"
-            app:layout_constraintBottom_toTopOf="@+id/stock_updates_recycler_view"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/no_data_available"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintRight_toRightOf="parent" />
 
         <TextView
             android:id="@+id/no_data_available"
@@ -34,21 +34,53 @@
             android:layout_centerInParent="true"
             android:text="@string/parcel_detail_activity_no_data"
             android:textSize="26sp"
-            android:visibility="visible"
-            app:layout_constraintBottom_toTopOf="@+id/stock_updates_recycler_view"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/tracking_detail_item_recycler_view"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/hello_world_salute"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/stock_updates_recycler_view"
+            android:id="@+id/tracking_detail_item_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/no_data_available"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/hello_world_salute" />
+            app:layout_constraintRight_toRightOf="parent" />
 <!--            bind:item="@{stockSymbolList}"-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--<RelativeLayout
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="6dp"
+        tools:context=".parcelDetail.ParcelDetailActivity">
+
+        <TextView
+            android:id="@+id/hello_world_salute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/no_data_available"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="We are sorry, but we couldn't load any data."
+            android:textAlignment="center"
+            android:textSize="26sp"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/tracking_detail_item_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/hello_world_salute" />
+    </RelativeLayout>-->
 </layout>

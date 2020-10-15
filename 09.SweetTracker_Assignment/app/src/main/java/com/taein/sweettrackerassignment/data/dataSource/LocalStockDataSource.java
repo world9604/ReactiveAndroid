@@ -1,14 +1,12 @@
 package com.taein.sweettrackerassignment.data.dataSource;
 
 import androidx.annotation.NonNull;
-
-import com.taein.sweettrackerassignment.StockUpdate;
 import com.taein.sweettrackerassignment.data.dao.ParcelInfoDao;
 import com.taein.sweettrackerassignment.data.entity.ParcelInfo;
+import com.taein.sweettrackerassignment.data.vo.ParcelInfoWithTrackingDetails;
 
-import io.reactivex.Flowable;
-import io.reactivex.Observable;
 import io.reactivex.Single;
+
 
 public class LocalStockDataSource implements StockDataSource{
 
@@ -31,8 +29,8 @@ public class LocalStockDataSource implements StockDataSource{
     }
 
     @Override
-    public Single<ParcelInfo> getStockUpdateById(int id) {
-        return parcelInfoDao.getParcelInfoById(id);
+    public ParcelInfoWithTrackingDetails getStockUpdateById(int id) {
+        return parcelInfoDao.getParcelInfoWithTrackingDetailsById(id);
     }
 
     @Override
@@ -41,12 +39,12 @@ public class LocalStockDataSource implements StockDataSource{
     }
 
     @Override
-    public Flowable<ParcelInfo> getStockUpdates() {
+    public ParcelInfoWithTrackingDetails getStockUpdates() {
         return parcelInfoDao.getParcelInfos();
     }
 
     @Override
-    public Observable<ParcelInfo> getParcelInfoFromQuery(String query) {
+    public Single<ParcelInfoWithTrackingDetails> getParcelVOFromQuery() {
         return null;
     }
 }

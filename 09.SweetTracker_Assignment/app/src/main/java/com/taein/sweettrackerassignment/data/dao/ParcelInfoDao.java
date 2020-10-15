@@ -5,9 +5,10 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import androidx.room.Update;
 import com.taein.sweettrackerassignment.data.entity.ParcelInfo;
-import io.reactivex.Observable;
+import com.taein.sweettrackerassignment.data.vo.ParcelInfoWithTrackingDetails;
 
 @Dao
 public interface ParcelInfoDao {
@@ -21,11 +22,12 @@ public interface ParcelInfoDao {
     @Delete
     void delete(ParcelInfo parcelInfo);
 
-    @Query("SELECT * FROM stock_updates WHERE id = (:id)")
-    Observable<ParcelInfo> getParcelInfoById(int id);
+    @Transaction
+    @Query("SELECT * FROM parcel_Info WHERE id = :id")
+    ParcelInfoWithTrackingDetails getParcelInfoWithTrackingDetailsById(int id);
 
-    @Query("SELECT * FROM stock_updates ORDER BY purchaseItemDate DESC LIMIT 50")
-    Observable<ParcelInfo> getParcelInfos();
+    @Query("SELECT * FROM parcel_Info ORDER BY purchase_item_date DESC LIMIT 50")
+    ParcelInfoWithTrackingDetails getParcelInfos();
 
     //Rxjava
     /*@Query("SELECT * from user where id = :id LIMIT 1")

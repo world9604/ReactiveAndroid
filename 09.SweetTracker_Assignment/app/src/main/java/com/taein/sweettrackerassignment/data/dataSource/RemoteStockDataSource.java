@@ -4,9 +4,8 @@ import androidx.annotation.NonNull;
 
 import com.taein.sweettrackerassignment.data.dao.SweetTrackerService;
 import com.taein.sweettrackerassignment.data.entity.ParcelInfo;
+import com.taein.sweettrackerassignment.data.vo.ParcelInfoWithTrackingDetails;
 
-import io.reactivex.Flowable;
-import io.reactivex.Observable;
 import io.reactivex.Single;
 
 public class RemoteStockDataSource implements StockDataSource{
@@ -30,22 +29,20 @@ public class RemoteStockDataSource implements StockDataSource{
     }
 
     @Override
-    public Single<ParcelInfo> getStockUpdateById(int id) {
-        return sweetTrackerService.getStockUpdateById(id);
+    public ParcelInfoWithTrackingDetails getStockUpdateById(int id) {
+        return new ParcelInfoWithTrackingDetails();
     }
 
     @Override
-    public void insert(ParcelInfo stockUpdate) {
-        sweetTrackerService.insert(stockUpdate);
+    public void insert(ParcelInfo stockUpdate) {}
+
+    @Override
+    public ParcelInfoWithTrackingDetails getStockUpdates() {
+        return new ParcelInfoWithTrackingDetails();
     }
 
     @Override
-    public Flowable<ParcelInfo> getStockUpdates() {
-        return sweetTrackerService.getStockUpdates();
-    }
-
-    @Override
-    public Observable<ParcelInfo> getParcelInfoFromQuery(String query) {
-        return sweetTrackerService.getParcelInfoFromQuery(query);
+    public Single<ParcelInfoWithTrackingDetails> getParcelVOFromQuery() {
+        return sweetTrackerService.getParcelInfoFromQuery();
     }
 }

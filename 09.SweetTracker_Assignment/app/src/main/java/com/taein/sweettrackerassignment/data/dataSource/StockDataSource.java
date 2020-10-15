@@ -1,17 +1,18 @@
 package com.taein.sweettrackerassignment.data.dataSource;
 
 import com.taein.sweettrackerassignment.data.entity.ParcelInfo;
-import io.reactivex.Observable;
+import com.taein.sweettrackerassignment.data.vo.ParcelInfoWithTrackingDetails;
+
 import io.reactivex.Single;
 
 public interface StockDataSource {
 
-    Single<ParcelInfo> getStockUpdateById(int id);
+    ParcelInfoWithTrackingDetails getStockUpdateById(int id);
 
     void insert(ParcelInfo stockUpdate);
 
-    Observable<ParcelInfo> getStockUpdates();
+    ParcelInfoWithTrackingDetails getStockUpdates();
 
-    ParcelInfo getParcelInfoFromQuery(String query);
+    Single<ParcelInfoWithTrackingDetails> getParcelVOFromQuery();
 }
 

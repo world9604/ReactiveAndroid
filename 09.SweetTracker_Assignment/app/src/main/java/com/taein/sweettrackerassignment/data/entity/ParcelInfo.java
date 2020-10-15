@@ -4,57 +4,59 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
+
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
-@Entity(tableName = "stock_updates")
+@Data
+@ToString
+@AllArgsConstructor
+@Entity(tableName = "parcel_Info")
 public class ParcelInfo implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    @Getter @Setter
     private int id;
 
-    @ColumnInfo(name = "parcelCompanyCode")
-    @Getter
+    @ColumnInfo(name = "parcel_company_code")
+    @SerializedName("parcelCompanyCode")
     private String parcelCompanyCode;
 
-    @ColumnInfo(name = "parcelCompanyName")
-    @Getter
+    @ColumnInfo(name = "parcel_company_name")
+    @SerializedName("parcelCompanyName")
     private String parcelCompanyName;
 
-    @ColumnInfo(name = "parcelLevel")
-    @Getter
+    @ColumnInfo(name = "parcel_level")
+    @SerializedName("parcelLevel")
     private int parcelLevel;
 
-    @ColumnInfo(name = "parcelDeliverTime")
-    @Getter
+    @ColumnInfo(name = "parcel_deliver_time")
+    @SerializedName("parcelDeliverTime")
     private String parcelDeliverTime;
 
-    @ColumnInfo(name = "purchaseItemImg")
-    @Getter
+    @ColumnInfo(name = "purchase_item_img")
+    @SerializedName("purchaseItemImg")
     private String purchaseItemImg;
 
-    @ColumnInfo(name = "purchaseItemName")
-    @Getter
+    @ColumnInfo(name = "purchase_item_name")
+    @SerializedName("purchaseItemName")
     private String purchaseItemName;
 
-    @ColumnInfo(name = "purchaseItemDate")
-    @Getter
+    @ColumnInfo(name = "purchase_item_date")
+    @SerializedName("purchaseItemDate")
     private String purchaseItemDate;
 
-    @ColumnInfo(name = "trackingDetail")
-    @ForeignKey(
-            entity = ParcelInfo.class,
-            parentColumns = "id",
-            childColumns = "trackingDetails"
-    )
-    @Getter
-    private List<TrackingDetail> trackingDetails;
-
-    public ParcelInfo(String parcelCompanyCode, String parcelCompanyName, int parcelLevel, String parcelDeliverTime, String purchaseItemImg, String purchaseItemName, String purchaseItemDate, List<TrackingDetail> trackingDetails) {
+    public ParcelInfo(String parcelCompanyCode, String parcelCompanyName,
+                      int parcelLevel, String parcelDeliverTime, String purchaseItemImg,
+                      String purchaseItemName, String purchaseItemDate) {
         this.parcelCompanyCode = parcelCompanyCode;
         this.parcelCompanyName = parcelCompanyName;
         this.parcelLevel = parcelLevel;
@@ -62,10 +64,5 @@ public class ParcelInfo implements Serializable {
         this.purchaseItemImg = purchaseItemImg;
         this.purchaseItemName = purchaseItemName;
         this.purchaseItemDate = purchaseItemDate;
-        this.trackingDetails = trackingDetails;
     }
-
-    /*public static ParcelInfo create(ParcelInfo newParcelInfo) {
-        return new ParcelInfo();
-    }*/
 }
