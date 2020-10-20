@@ -6,8 +6,8 @@
     <data>
         <import type="androidx.databinding.ObservableArrayList" />
         <variable
-            name="activity"
-            type="com.taein.sweettrackerassignment.parcelDetail.ParcelDetailActivity"/>
+            name="parcelInfo"
+            type="com.taein.sweettrackerassignment.data.entity.ParcelInfo"/>
         <!--<variable
             name="stockSymbolList"
             type="ObservableArrayList&lt;String&gt;" />-->
@@ -17,70 +17,228 @@
         android:layout_height="match_parent"
         tools:context=".parcelDetail.ParcelDetailActivity">
 
-        <TextView
-            android:id="@+id/hello_world_salute"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{activity.helloText}"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/no_data_available"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+        <!--parcel_detail_activity 왼쪽 수직 가이드 라인-->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/parcel_detail_activity_left_vertical_guideline"
+            app:layout_constraintGuide_begin="16dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <!--parcel_detail_activity 오른쪽 수직 가이드 라인-->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/parcel_detail_activity_right_vertical_guideline"
+            app:layout_constraintGuide_end="16dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <!--current_tracking_status 수평 가이드 라인-->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/current_tracking_status_horizontal_guideline"
+            app:layout_constraintGuide_begin="0dp"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/no_data_available"
+            android:id="@+id/current_tracking_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/parcel_detail_activity_no_data"
-            android:textSize="26sp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/tracking_detail_item_recycler_view"
+            android:text="@{parcelInfo.parcelLevel}"
+            android:textStyle="normal"
+            android:textSize="30sp"
+            android:textColor="#212121"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/current_tracking_status_horizontal_guideline"
+            app:layout_constraintBottom_toTopOf="@+id/estimated_time_of_arrival"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/hello_world_salute"/>
+            app:layout_constraintRight_toRightOf="parent" />
+<!--            android:text="배달준비"-->
+
+        <TextView
+            android:id="@+id/estimated_time_of_arrival"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="도착예정시간 : 14~16시"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@+id/current_tracking_status"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <!--굵은 수평 라인-->
+        <View
+            android:id="@+id/delivery_process_progress_bar"
+            android:background="#03a9f4"
+            android:layout_width="264dp"
+            android:layout_height="4dp"
+            android:layout_marginTop="34dp"
+            app:layout_constraintLeft_toRightOf="@id/parcel_detail_activity_left_vertical_guideline"
+            app:layout_constraintRight_toLeftOf="@+id/parcel_detail_activity_right_vertical_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/estimated_time_of_arrival"/>
+
+        <!--굵은 수평 라인-->
+        <View
+            android:id="@+id/current_tracking_status_horizontal_line"
+            android:background="#f0f0f0"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/product_horizontal_guideline"/>
+
+        <!--제품 상세 가이드 라인-->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/product_horizontal_guideline"
+            app:layout_constraintGuide_begin="187dp"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <!--제품 이미지-->
+        <TextView
+            android:id="@+id/product_main_img"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:text="product_main_img"
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/product_horizontal_guideline"
+            app:layout_constraintLeft_toRightOf="@+id/parcel_detail_activity_left_vertical_guideline"
+            app:layout_constraintRight_toLeftOf="@+id/product_title_tv" />
+
+        <!--제품 제목-->
+        <TextView
+            android:id="@+id/product_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="애플 쿠폰할인 당일출고"
+            android:textSize="16sp"
+            app:layout_constraintTop_toTopOf="@+id/product_main_img"
+            app:layout_constraintLeft_toRightOf="@+id/product_main_img"
+            android:layout_marginLeft="14dp"/>
+
+        <!--등록일-->
+        <TextView
+            android:id="@+id/registration_date_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="등록일 : 2019-12-07"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/product_main_img"
+            app:layout_constraintStart_toStartOf="@+id/product_title_tv" />
+
+        <!--얇은 수평 라인-->
+        <View
+            android:id="@+id/courier_company_horizontal_line"
+            android:background="#f0f0f0"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintLeft_toRightOf="@id/parcel_detail_activity_left_vertical_guideline"
+            app:layout_constraintRight_toLeftOf="@+id/parcel_detail_activity_right_vertical_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/registration_date_tv"/>
+
+        <!--택배사-->
+        <TextView
+            android:id="@+id/courier_company_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="택배사"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@+id/courier_company_horizontal_line"
+            app:layout_constraintBottom_toTopOf="@+id/waybill_number_tv"
+            app:layout_constraintLeft_toRightOf="@+id/parcel_detail_activity_left_vertical_guideline"
+            app:layout_constraintStart_toStartOf="@+id/product_main_img"
+            app:layout_constraintRight_toLeftOf="@+id/courier_company_value_tv" />
+
+        <!--택배사 내용-->
+        <TextView
+            android:id="@+id/courier_company_value_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="우체국택배(등기)"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/courier_company_tv"
+            app:layout_constraintLeft_toRightOf="@+id/courier_company_tv"
+            android:layout_marginLeft="60dp"
+            app:layout_constraintTop_toTopOf="@+id/courier_company_tv" />
+
+        <!--운송장 번호-->
+        <TextView
+            android:id="@+id/waybill_number_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="운송장번호"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@+id/courier_company_tv"
+            app:layout_constraintBottom_toTopOf="@+id/tracking_detail_guideline"
+            app:layout_constraintLeft_toRightOf="@+id/parcel_detail_activity_left_vertical_guideline"
+            app:layout_constraintStart_toStartOf="@+id/courier_company_tv"
+            app:layout_constraintRight_toLeftOf="@+id/waybill_number_value_tv" />
+
+        <!--운송장 번호 내용-->
+        <TextView
+            android:id="@+id/waybill_number_value_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1234567890123"
+            android:textSize="18sp"
+            app:layout_constraintTop_toTopOf="@+id/waybill_number_tv"
+            app:layout_constraintStart_toStartOf="@+id/courier_company_value_tv"
+            app:layout_constraintBottom_toBottomOf="@+id/waybill_number_tv"/>
+
+        <!--굵은 수평 라인-->
+        <View
+            android:id="@+id/waybill_number_horizontal_line"
+            android:background="#f0f0f0"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/tracking_detail_guideline"/>
+
+        <!--배송 상세 가이드 라인-->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/tracking_detail_guideline"
+            app:layout_constraintGuide_percent="0.65"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!--배송 상세-->
+        <TextView
+            android:id="@+id/tracking_detail_placeholder_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="배송 상세"
+            android:textStyle="normal"
+            android:textSize="16sp"
+            android:textColor="#212121"
+            android:layout_marginTop="16dp"
+            app:layout_constraintLeft_toRightOf="@id/parcel_detail_activity_left_vertical_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/tracking_detail_guideline"/>
+
+        <!--택배 리뷰-->
+        <TextView
+            android:id="@+id/courier_reviews_placeholder_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="택배 리뷰"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            android:textColor="#03a9f4"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tracking_detail_placeholder_tv"
+            app:layout_constraintRight_toLeftOf="@id/parcel_detail_activity_right_vertical_guideline"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tracking_detail_item_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constrainedHeight="true"
             android:scrollbars="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/no_data_available"
+            app:layout_constraintTop_toBottomOf="@+id/tracking_detail_placeholder_tv"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            android:layout_marginTop="16dp"
+            app:layout_constraintLeft_toRightOf="@+id/parcel_detail_activity_left_vertical_guideline"
+            app:layout_constraintRight_toLeftOf="@+id/parcel_detail_activity_right_vertical_guideline" />
 <!--            bind:item="@{stockSymbolList}"-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <!--<RelativeLayout
-        android:id="@+id/activity_main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="6dp"
-        tools:context=".parcelDetail.ParcelDetailActivity">
-
-        <TextView
-            android:id="@+id/hello_world_salute"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="" />
-
-        <TextView
-            android:id="@+id/no_data_available"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="We are sorry, but we couldn't load any data."
-            android:textAlignment="center"
-            android:textSize="26sp"
-            android:visibility="gone"
-            android:layout_gravity="center_horizontal" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/tracking_detail_item_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/hello_world_salute" />
-    </RelativeLayout>-->
 </layout>

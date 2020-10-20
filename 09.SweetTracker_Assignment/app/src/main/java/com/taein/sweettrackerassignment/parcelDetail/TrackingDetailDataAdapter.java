@@ -40,8 +40,13 @@ public class TrackingDetailDataAdapter extends RecyclerView.Adapter<TrackingDeta
         return data.size();
     }
 
-    public void add(TrackingDetail newTrackingDetails) {
-        this.data.add(0, newTrackingDetails);
+    public void add(TrackingDetail newTrackingDetail) {
+        this.data.add(0, newTrackingDetail);
+        notifyItemInserted(0);
+    }
+
+    public void addAll(List<TrackingDetail> newTrackingDetails) {
+        this.data.addAll(0, newTrackingDetails);
         notifyItemInserted(0);
     }
 

@@ -37,13 +37,14 @@ public class ParcelDetailActivity extends RxAppCompatActivity {
     private ActivityParcelDetailBinding binding;
     private TrackingDetailDataAdapter trackingDetailDataAdapter;
     private ParcelDetailViewModel viewModel;
+    private ParcelInfo parcelInfo;
 
     @SuppressLint("CheckResult")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_parcel_detail);
-        binding.setActivity(this);
+        binding.setParcelInfo(parcelInfo);
 
         repository = ParcelInfoRepository.getInstance(getApplication());
 //        viewModel = ParcelDetailActivity.obtainViewModel(requireActivity());
@@ -61,13 +62,23 @@ public class ParcelDetailActivity extends RxAppCompatActivity {
         repository.getParcelVOFromQuery()
                 .subscribeOn(Schedulers.io())
                 .toObservable()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(parcelInfoWithTrackingDetail -> {
+                    Log.d(SWEET_TRACKER_TAG, "New update time : " + parcelInfoWithTrackingDetail.getParcelInfo().getParcelCompanyName());
+                    trackingDetailDataAdapter.addAll(parcelInfoWithTrackingDetail.getTrackingDetails());
+                    this.parcelInfo = parcelInfoWithTrackingDetail.getParcelInfo();
+                });
+
+        /*repository.getParcelVOFromQuery()
+                .subscribeOn(Schedulers.io())
+                .toObservable()
                 .map(r -> r.getTrackingDetails())
                 .flatMap(r -> Observable.fromIterable(r))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(trackingDetail -> {
                     Log.d(SWEET_TRACKER_TAG, "New update time : " + trackingDetail.getTime());
                     trackingDetailDataAdapter.add(trackingDetail);
-                });
+                });*/
 
 
        /* Observable.interval(0, 5, TimeUnit.SECONDS)
