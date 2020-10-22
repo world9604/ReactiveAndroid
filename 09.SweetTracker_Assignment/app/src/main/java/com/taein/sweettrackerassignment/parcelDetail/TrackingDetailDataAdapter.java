@@ -54,7 +54,7 @@ public class TrackingDetailDataAdapter extends RecyclerView.Adapter<TrackingDeta
         if (trackingDetails == null) {
             return;
         }
-        this.data.addAll(trackingDetails);
+        this.data = trackingDetails;
         notifyDataSetChanged();
     }
 

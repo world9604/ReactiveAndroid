@@ -33,7 +33,7 @@ public class ParcelDetailActivity extends RxAppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_parcel_detail);
         RxJavaPlugins.setErrorHandler(ErrorHandler.get());
 
-        viewModel = ParcelDetailActivity.obtainViewModel(this);
+        viewModel = obtainViewModel(this);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
 

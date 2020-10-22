@@ -12,9 +12,7 @@ import com.taein.sweettrackerassignment.data.entity.TrackingDetail;
 
 @Database(entities = {ParcelInfo.class, TrackingDetail.class}, version = 1)
 public abstract class ParcelInfoDatabase extends RoomDatabase {
-
     public abstract ParcelInfoDao ParcelInfoDao();
-
     private static ParcelInfoDatabase INSTANCE;
     private static final Object sync = new Object();
     private static Context context;

@@ -41,7 +41,7 @@
             android:id="@+id/current_tracking_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.parcelInfoWithTrackingDetailsLiveData.parcelCompanyName}"
+            bind:parcelLevel="@{viewModel.parcelInfoWithTrackingDetailsLiveData.parcelLevel}"
             android:textStyle="normal"
             android:textSize="30sp"
             android:textColor="#212121"
@@ -56,7 +56,7 @@
             android:id="@+id/estimated_time_of_arrival"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.parcelInfoWithTrackingDetailsLiveData.parcelDeliverTime}"
+            bind:parcelDeliverTime="@{viewModel.parcelInfoWithTrackingDetailsLiveData.parcelDeliverTime}"
             android:textSize="18sp"
             app:layout_constraintTop_toBottomOf="@+id/current_tracking_status"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -104,13 +104,15 @@
         <!--제품 제목-->
         <TextView
             android:id="@+id/product_title_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.parcelInfoWithTrackingDetailsLiveData.purchaseItemName}"
+            android:text="애플 쿠폰할인 당일출고 애플 에어팟 MMEF2KH/A"
             android:textSize="16sp"
             app:layout_constraintTop_toTopOf="@+id/product_main_image_view"
             app:layout_constraintLeft_toRightOf="@+id/product_main_image_view"
             android:layout_marginLeft="14dp"/>
+<!--        android:text="@{viewModel.parcelInfoWithTrackingDetailsLiveData.purchaseItemName}"-->
+
 
         <!--등록일-->
         <TextView

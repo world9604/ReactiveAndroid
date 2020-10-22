@@ -24,6 +24,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import lombok.Data;
+import com.taein.sweettrackerassignment.data.vo.ParcelInfoWithTrackingDetailsVO.ParcelLevel;
 
 import static com.taein.sweettrackerassignment.parcelDetail.ParcelDetailActivity.SWEET_TRACKER_TAG;
 
@@ -44,8 +45,8 @@ public class ParcelDetailViewModel extends ViewModel {
                 .toObservable()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(parcelInfoWithTrackingDetailsVO -> {
-                    Log.d(SWEET_TRACKER_TAG, "New update time : "
-                            + parcelInfoWithTrackingDetailsVO.getParcelCompanyName());
+                    Log.d(SWEET_TRACKER_TAG, "ParcelLevel : "
+                            + parcelInfoWithTrackingDetailsVO.getParcelLevel());
                     parcelInfoWithTrackingDetailsLiveData.setValue(parcelInfoWithTrackingDetailsVO);
                 });
     }
@@ -82,8 +83,8 @@ public class ParcelDetailViewModel extends ViewModel {
 //                .doOnError(error -> {
 //                    Toast.makeText(this, R.string.parcel_detail_activity_no_connect_internet, Toast.LENGTH_SHORT).show();
 //                })
-//                .observeOn(Schedulers.io())
-//                .doOnNext(this::saveParcelInfo)
+                .observeOn(Schedulers.io())
+                .doOnNext(this::saveParcelInfo)
                 .subscribe(parcelInfoWithTrackingDetails -> {
                     Log.d(SWEET_TRACKER_TAG, "New update " + parcelInfoWithTrackingDetails.);
                 });*/
