@@ -8,7 +8,7 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 import androidx.room.Update;
 import com.taein.sweettrackerassignment.data.entity.ParcelInfo;
-import com.taein.sweettrackerassignment.data.vo.ParcelInfoWithTrackingDetails;
+import com.taein.sweettrackerassignment.data.entity.ParcelInfoWithTrackingDetails;
 
 @Dao
 public interface ParcelInfoDao {

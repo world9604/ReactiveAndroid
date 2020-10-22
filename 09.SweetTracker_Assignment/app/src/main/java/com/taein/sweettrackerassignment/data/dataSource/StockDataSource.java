@@ -1,9 +1,10 @@
 package com.taein.sweettrackerassignment.data.dataSource;
 
 import com.taein.sweettrackerassignment.data.entity.ParcelInfo;
-import com.taein.sweettrackerassignment.data.vo.ParcelInfoWithTrackingDetails;
+import com.taein.sweettrackerassignment.data.entity.ParcelInfoWithTrackingDetails;
+import com.taein.sweettrackerassignment.data.vo.ParcelInfoWithTrackingDetailsVO;
 
-import io.reactivex.Single;
+import io.reactivex.Flowable;
 
 public interface StockDataSource {
 
@@ -13,6 +14,6 @@ public interface StockDataSource {
 
     ParcelInfoWithTrackingDetails getStockUpdates();
 
-    Single<ParcelInfoWithTrackingDetails> getParcelVOFromQuery();
+    Flowable<ParcelInfoWithTrackingDetailsVO> getParcelVOFromQuery();
 }
 

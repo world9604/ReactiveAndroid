@@ -9,7 +9,7 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import com.taein.sweettrackerassignment.data.ParcelInfoDatabase;
 import com.taein.sweettrackerassignment.data.entity.ParcelInfo;
 import com.taein.sweettrackerassignment.data.entity.TrackingDetail;
-import com.taein.sweettrackerassignment.data.vo.ParcelInfoWithTrackingDetails;
+import com.taein.sweettrackerassignment.data.entity.ParcelInfoWithTrackingDetails;
 
 import org.junit.After;
 import org.junit.Before;

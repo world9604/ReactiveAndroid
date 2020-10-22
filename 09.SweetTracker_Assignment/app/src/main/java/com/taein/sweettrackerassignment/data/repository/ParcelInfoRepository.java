@@ -9,9 +9,10 @@ import com.taein.sweettrackerassignment.data.dataSource.LocalStockDataSource;
 import com.taein.sweettrackerassignment.data.dataSource.RemoteStockDataSource;
 import com.taein.sweettrackerassignment.data.dataSource.StockDataSource;
 import com.taein.sweettrackerassignment.data.entity.ParcelInfo;
-import com.taein.sweettrackerassignment.data.vo.ParcelInfoWithTrackingDetails;
+import com.taein.sweettrackerassignment.data.entity.ParcelInfoWithTrackingDetails;
+import com.taein.sweettrackerassignment.data.vo.ParcelInfoWithTrackingDetailsVO;
 
-import io.reactivex.Single;
+import io.reactivex.Flowable;
 
 public class ParcelInfoRepository {
 
@@ -55,7 +56,7 @@ public class ParcelInfoRepository {
         return localDataSource.getStockUpdates();
     }
 
-    public Single<ParcelInfoWithTrackingDetails> getParcelVOFromQuery() {
+    public Flowable<ParcelInfoWithTrackingDetailsVO> getParcelVOFromQuery() {
         return remoteDataSource.getParcelVOFromQuery();
     }
 }

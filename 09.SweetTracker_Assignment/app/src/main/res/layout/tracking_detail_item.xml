@@ -23,7 +23,7 @@
             android:id="@+id/tracking_detail_item_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="06:51:00"
+            android:text="@{trackingDetail.time}"
             android:textStyle="normal"
             android:textSize="12sp"
             android:textColor="#aaaaaa"
@@ -31,13 +31,12 @@
             app:layout_constraintTop_toTopOf="@+id/tracking_detail_horizontal_guideline"
             app:layout_constraintBottom_toTopOf="@+id/tracking_detail_item_status"
             app:layout_constraintLeft_toLeftOf="parent" />
-<!--            android:text="@{trackingDetail.time}"-->
 
         <TextView
             android:id="@+id/tracking_detail_item_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="배달준비"
+            android:text="@{trackingDetail.status}"
             android:textStyle="normal"
             android:textSize="14sp"
             android:textColor="#212121"
@@ -45,21 +44,19 @@
             app:layout_constraintTop_toBottomOf="@+id/tracking_detail_item_time"
             app:layout_constraintBottom_toTopOf="@+id/tracking_detail_item_where"
             app:layout_constraintStart_toStartOf="@+id/tracking_detail_item_time" />
-<!--            android:text="@{trackingDetail.status}"-->
 
         <TextView
             android:id="@+id/tracking_detail_item_where"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="과천우체국"
+            android:text="@{trackingDetail.where}"
             android:textStyle="normal"
             android:textSize="12sp"
             android:textColor="#212121"
             android:layout_marginTop="2dp"
             app:layout_constraintTop_toBottomOf="@+id/tracking_detail_item_status"
             app:layout_constraintStart_toStartOf="@+id/tracking_detail_item_time" />
-<!--            android:text="@{trackingDetail.where}"-->
 
         <View
             android:background="#f0f0f0"

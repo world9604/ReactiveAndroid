@@ -16,8 +16,8 @@ import java.util.List;
 
 import static com.taein.sweettrackerassignment.parcelDetail.ParcelDetailActivity.SWEET_TRACKER_TAG;
 
-public class TrackingDetailDataAdapter extends RecyclerView.Adapter<TrackingDetailDataViewHolder> {
-    private final List<TrackingDetail> data = new ArrayList<>();
+public class TrackingDetailDataAdapter extends RecyclerView.Adapter<TrackingDetailDataAdapter.TrackingDetailDataViewHolder> {
+    private List<TrackingDetail> data = new ArrayList<>();
 
     @Override
     public TrackingDetailDataViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -50,11 +50,27 @@ public class TrackingDetailDataAdapter extends RecyclerView.Adapter<TrackingDeta
         notifyItemInserted(0);
     }
 
-    /*void setItem(List<String> stockSymbol) {
-        if (stockSymbol == null) {
+    void setItem(List<TrackingDetail> trackingDetails) {
+        if (trackingDetails == null) {
             return;
         }
-        this.data = stockSymbol;
+        this.data.addAll(trackingDetails);
         notifyDataSetChanged();
-    }*/
+    }
+
+
+
+    class TrackingDetailDataViewHolder extends RecyclerView.ViewHolder {
+
+        TrackingDetailItemBinding binding;
+
+        public TrackingDetailDataViewHolder(TrackingDetailItemBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+        }
+
+        void bind(TrackingDetail trackingDetail) {
+            binding.setTrackingDetail(trackingDetail);
+        }
+    }
 }

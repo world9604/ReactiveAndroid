@@ -4,9 +4,10 @@ import androidx.annotation.NonNull;
 
 import com.taein.sweettrackerassignment.data.dao.SweetTrackerService;
 import com.taein.sweettrackerassignment.data.entity.ParcelInfo;
-import com.taein.sweettrackerassignment.data.vo.ParcelInfoWithTrackingDetails;
+import com.taein.sweettrackerassignment.data.entity.ParcelInfoWithTrackingDetails;
+import com.taein.sweettrackerassignment.data.vo.ParcelInfoWithTrackingDetailsVO;
 
-import io.reactivex.Single;
+import io.reactivex.Flowable;
 
 public class RemoteStockDataSource implements StockDataSource{
 
@@ -42,7 +43,7 @@ public class RemoteStockDataSource implements StockDataSource{
     }
 
     @Override
-    public Single<ParcelInfoWithTrackingDetails> getParcelVOFromQuery() {
+    public Flowable<ParcelInfoWithTrackingDetailsVO> getParcelVOFromQuery() {
         return sweetTrackerService.getParcelInfoFromQuery();
     }
 }

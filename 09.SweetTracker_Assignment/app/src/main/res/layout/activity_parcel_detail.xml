@@ -4,13 +4,9 @@
     xmlns:bind="http://schemas.android.com/tools"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <import type="androidx.databinding.ObservableArrayList" />
         <variable
-            name="parcelInfo"
-            type="com.taein.sweettrackerassignment.data.entity.ParcelInfo"/>
-        <!--<variable
-            name="stockSymbolList"
-            type="ObservableArrayList&lt;String&gt;" />-->
+            name="viewModel"
+            type="com.taein.sweettrackerassignment.parcelDetail.ParcelDetailViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -45,7 +41,7 @@
             android:id="@+id/current_tracking_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{parcelInfo.parcelLevel}"
+            android:text="@{viewModel.parcelInfoWithTrackingDetailsLiveData.parcelCompanyName}"
             android:textStyle="normal"
             android:textSize="30sp"
             android:textColor="#212121"
@@ -60,7 +56,7 @@
             android:id="@+id/estimated_time_of_arrival"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="도착예정시간 : 14~16시"
+            android:text="@{viewModel.parcelInfoWithTrackingDetailsLiveData.parcelDeliverTime}"
             android:textSize="18sp"
             app:layout_constraintTop_toBottomOf="@+id/current_tracking_status"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -94,11 +90,11 @@
             android:layout_height="wrap_content" />
 
         <!--제품 이미지-->
-        <TextView
-            android:id="@+id/product_main_img"
+        <ImageView
+            android:id="@+id/product_main_image_view"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:text="product_main_img"
+            bind:imageUrl="@{viewModel.parcelInfoWithTrackingDetailsLiveData.purchaseItemImg}"
             android:textSize="18sp"
             android:layout_marginTop="20dp"
             app:layout_constraintTop_toBottomOf="@+id/product_horizontal_guideline"
@@ -110,10 +106,10 @@
             android:id="@+id/product_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="애플 쿠폰할인 당일출고"
+            android:text="@{viewModel.parcelInfoWithTrackingDetailsLiveData.purchaseItemName}"
             android:textSize="16sp"
-            app:layout_constraintTop_toTopOf="@+id/product_main_img"
-            app:layout_constraintLeft_toRightOf="@+id/product_main_img"
+            app:layout_constraintTop_toTopOf="@+id/product_main_image_view"
+            app:layout_constraintLeft_toRightOf="@+id/product_main_image_view"
             android:layout_marginLeft="14dp"/>
 
         <!--등록일-->
@@ -123,7 +119,7 @@
             android:layout_height="wrap_content"
             android:text="등록일 : 2019-12-07"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/product_main_img"
+            app:layout_constraintBottom_toBottomOf="@+id/product_main_image_view"
             app:layout_constraintStart_toStartOf="@+id/product_title_tv" />
 
         <!--얇은 수평 라인-->
@@ -147,7 +143,7 @@
             app:layout_constraintTop_toBottomOf="@+id/courier_company_horizontal_line"
             app:layout_constraintBottom_toTopOf="@+id/waybill_number_tv"
             app:layout_constraintLeft_toRightOf="@+id/parcel_detail_activity_left_vertical_guideline"
-            app:layout_constraintStart_toStartOf="@+id/product_main_img"
+            app:layout_constraintStart_toStartOf="@+id/product_main_image_view"
             app:layout_constraintRight_toLeftOf="@+id/courier_company_value_tv" />
 
         <!--택배사 내용-->
@@ -155,7 +151,7 @@
             android:id="@+id/courier_company_value_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="우체국택배(등기)"
+            android:text="@{viewModel.parcelInfoWithTrackingDetailsLiveData.parcelCompanyName}"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/courier_company_tv"
             app:layout_constraintLeft_toRightOf="@+id/courier_company_tv"
@@ -180,10 +176,10 @@
             android:id="@+id/waybill_number_value_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1234567890123"
+            android:text="@{viewModel.parcelInfoWithTrackingDetailsLiveData.parcelInvoice}"
             android:textSize="18sp"
             app:layout_constraintTop_toTopOf="@+id/waybill_number_tv"
-            app:layout_constraintStart_toStartOf="@+id/courier_company_value_tv"
+            app:layout_constraintLeft_toLeftOf="@+id/courier_company_value_tv"
             app:layout_constraintBottom_toBottomOf="@+id/waybill_number_tv"/>
 
         <!--굵은 수평 라인-->
@@ -236,9 +232,10 @@
             app:layout_constraintTop_toBottomOf="@+id/tracking_detail_placeholder_tv"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginTop="16dp"
+            bind:item="@{viewModel.parcelInfoWithTrackingDetailsLiveData.trackingDetails}"
             app:layout_constraintLeft_toRightOf="@+id/parcel_detail_activity_left_vertical_guideline"
             app:layout_constraintRight_toLeftOf="@+id/parcel_detail_activity_right_vertical_guideline" />
-<!--            bind:item="@{stockSymbolList}"-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
+
